@@ -1,0 +1,502 @@
+{
+ "generated_at": "2026-11-14T17:05:04+00:00",
+ "generated_label": "Nov 15, 01:05",
+ "jobs_on_duty": 41,
+ "runs_today": 20,
+ "runs_24h": 439,
+ "checks_today": 0,
+ "saved": {
+  "day_tasks": 10,
+  "day_human_hours": 3.9,
+  "day_agent_minutes": 48,
+  "week_human_hours": 47,
+  "tasks": [
+   {
+    "label": "Payroll preparation, first half",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Payroll preparation, second half",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Monthly financial close",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Supplier price sync",
+    "minutes": 180,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Quarterly tax paperwork",
+    "minutes": 180,
+    "cadence": "On the filing calendar"
+   },
+   {
+    "label": "Weekly internal audit",
+    "minutes": 120,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Weekly stock count check",
+    "minutes": 120,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Monthly tax paperwork",
+    "minutes": 120,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Daily audit: sales, cash and stock",
+    "minutes": 90,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Monthly cash sheet setup",
+    "minutes": 60,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Weekly finance health check",
+    "minutes": 60,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Daily bookkeeping close",
+    "minutes": 45,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Weekly stock count sheet",
+    "minutes": 30,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Bank transfers matched to cash sheet",
+    "minutes": 30,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Owner inbox daily summary",
+    "minutes": 30,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Daily work log",
+    "minutes": 20,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Owner pulse check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Goods-received data check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Tax deadline watch",
+    "minutes": 15,
+    "cadence": "Every 3 days"
+   },
+   {
+    "label": "Daily tax filing check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Delivery-app report download",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Kitchen order linking",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Cash totals sync",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Electricity bill check",
+    "minutes": 5,
+    "cadence": "Every day"
+   }
+  ]
+ },
+ "teams": [
+  {
+   "name": "Operations",
+   "jobs": [
+    {
+     "label": "Booking system check",
+     "cadence": "Every 10 min",
+     "last": "Today 00:58"
+    },
+    {
+     "label": "Job health monitor",
+     "cadence": "Every hour",
+     "last": "Today 00:41"
+    },
+    {
+     "label": "Bank login health check",
+     "cadence": "Every 30 min",
+     "last": "Today 00:36"
+    },
+    {
+     "label": "Watchdog: agents check agents",
+     "cadence": "Every hour",
+     "last": "Today 00:28"
+    },
+    {
+     "label": "Company notes sync",
+     "cadence": "Every 30 min",
+     "last": "Today 00:10"
+    },
+    {
+     "label": "Self-repair loop",
+     "cadence": "Every 2 hours",
+     "last": "Today 00:00"
+    },
+    {
+     "label": "Kitchen order linking",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:33"
+    },
+    {
+     "label": "Bank login refresh",
+     "cadence": "Every 12 hours",
+     "last": "Yesterday 20:02"
+    },
+    {
+     "label": "Goods-received data check",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:01"
+    },
+    {
+     "label": "Cash totals sync",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:00"
+    },
+    {
+     "label": "Owner pulse check",
+     "cadence": "Every 4 hours",
+     "last": "Yesterday 20:00"
+    },
+    {
+     "label": "Daily audit: sales, cash and stock",
+     "cadence": "Every day",
+     "last": "Yesterday 17:29"
+    },
+    {
+     "label": "Delivery-app report download",
+     "cadence": "Every day",
+     "last": "Yesterday 16:00"
+    },
+    {
+     "label": "Electricity bill check",
+     "cadence": "Every day",
+     "last": "Yesterday 15:00"
+    },
+    {
+     "label": "Staff exit paperwork watch",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 12:52"
+    },
+    {
+     "label": "Weekly stock count sheet",
+     "cadence": "Every week",
+     "last": "Yesterday 06:00"
+    },
+    {
+     "label": "Daily work log",
+     "cadence": "Every day",
+     "last": "Yesterday 05:00"
+    },
+    {
+     "label": "Weekly stock count check",
+     "cadence": "Every week",
+     "last": "Nov 12, 10:01"
+    },
+    {
+     "label": "Payment approval watch",
+     "cadence": "Every 2 hours",
+     "last": ""
+    },
+    {
+     "label": "Weekly internal audit",
+     "cadence": "Every week",
+     "last": ""
+    },
+    {
+     "label": "Running-cost monitor",
+     "cadence": "Every 12 hours",
+     "last": ""
+    },
+    {
+     "label": "Monthly cash sheet setup",
+     "cadence": "Every month",
+     "last": ""
+    },
+    {
+     "label": "System update review",
+     "cadence": "Every 6 hours",
+     "last": ""
+    },
+    {
+     "label": "Supplier price sync",
+     "cadence": "Every week",
+     "last": ""
+    }
+   ]
+  },
+  {
+   "name": "Finance",
+   "jobs": [
+    {
+     "label": "Payroll preparation, second half",
+     "cadence": "Every month",
+     "last": "Today 00:45"
+    },
+    {
+     "label": "Payroll preparation, first half",
+     "cadence": "Every month",
+     "last": "Yesterday 22:54"
+    },
+    {
+     "label": "Bank transfers matched to cash sheet",
+     "cadence": "Every day",
+     "last": "Yesterday 18:04"
+    },
+    {
+     "label": "Payroll double-check",
+     "cadence": "Every 12 hours",
+     "last": "Yesterday 14:09"
+    },
+    {
+     "label": "Daily tax filing check",
+     "cadence": "Every day",
+     "last": "Nov 13, 20:28"
+    },
+    {
+     "label": "Daily bookkeeping close",
+     "cadence": "Every day",
+     "last": "Nov 13, 20:22"
+    },
+    {
+     "label": "Tax deadline watch",
+     "cadence": "Every 3 days",
+     "last": "Nov 12, 12:10"
+    },
+    {
+     "label": "Weekly finance health check",
+     "cadence": "Every week",
+     "last": "Nov 9, 09:02"
+    },
+    {
+     "label": "Monthly financial close",
+     "cadence": "Every month",
+     "last": "Nov 1, 14:14"
+    },
+    {
+     "label": "Monthly tax paperwork",
+     "cadence": "Every month",
+     "last": "Oct 3, 14:05"
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": "Aug 8, 14:08"
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    }
+   ]
+  },
+  {
+   "name": "Executive Assistant",
+   "jobs": [
+    {
+     "label": "Owner inbox urgent-mail watch",
+     "cadence": "Every 3 hours",
+     "last": "Yesterday 17:14"
+    },
+    {
+     "label": "Payment approval watch",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 14:06"
+    },
+    {
+     "label": "Owner inbox daily summary",
+     "cadence": "Every day",
+     "last": "Yesterday 09:02"
+    }
+   ]
+  }
+ ],
+ "feed": [
+  {
+   "when": "Yesterday 18:03",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 17:28",
+   "team": "Operations",
+   "label": "Daily audit finished: items to watch",
+   "colour": "yellow",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 08:00",
+   "team": "Operations",
+   "label": "Cash totals recorded",
+   "colour": "green",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 07:10",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 20:27",
+   "team": "Finance",
+   "label": "Tax deadlines checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 20:25",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 20:14",
+   "team": "Operations",
+   "label": "Daily audit finished: items to watch",
+   "colour": "yellow",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 20:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 12:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 10:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 08:00",
+   "team": "Operations",
+   "label": "Cash totals recorded",
+   "colour": "green",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 06:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 12, 22:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 12, 19:01",
+   "team": "Finance",
+   "label": "Tax deadlines checked",
+   "colour": "neutral",
+   "count": 1
+  }
+ ],
+ "days": [
+  {
+   "day": "Mon",
+   "date": "Nov 9",
+   "count": 98,
+   "rest": true
+  },
+  {
+   "day": "Tue",
+   "date": "Nov 10",
+   "count": 19,
+   "rest": false
+  },
+  {
+   "day": "Wed",
+   "date": "Nov 11",
+   "count": 14,
+   "rest": false
+  },
+  {
+   "day": "Thu",
+   "date": "Nov 12",
+   "count": 12,
+   "rest": false
+  },
+  {
+   "day": "Fri",
+   "date": "Nov 13",
+   "count": 23,
+   "rest": false
+  },
+  {
+   "day": "Sat",
+   "date": "Nov 14",
+   "count": 5,
+   "rest": false
+  },
+  {
+   "day": "Sun",
+   "date": "Nov 15",
+   "count": 0,
+   "rest": false
+  }
+ ]
+}

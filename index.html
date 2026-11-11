@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ZeroFive Live Proof</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Same system as the showcase deck: ink ground, amber as the only accent,
+   green / yellow / red reserved for status. One column of proof, top to bottom. */
+:root{
+  color-scheme:dark;
+  --ink:#0a0e17;--panel:#111827;--panel-2:#162033;
+  --line:rgba(244,239,228,.12);--line-strong:rgba(244,239,228,.22);
+  --text:#f4efe4;--muted:#a3acbd;--dim:#6f7a8f;
+  --amber:#f5a524;--amber-soft:rgba(245,165,36,.12);
+  --green:#35c98a;--yellow:#f2d13c;--red:#ff5d5d;
+  --display:"Bricolage Grotesque","Figtree",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul{margin:0;padding:0}ul{list-style:none}
+a{color:var(--amber)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+.page{max-width:1080px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px),5vw);padding-right:max(16px,env(safe-area-inset-right,0px),5vw);display:grid;gap:clamp(36px,6vw,64px)}
+.mono{font-family:var(--mono)}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
+.brand span{color:var(--amber)}
+.top small{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);flex:none;position:relative;display:inline-block}
+.dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--green);opacity:0;animation:pulse 2s ease-out infinite}
+.stale .dot{background:var(--yellow)}.stale .dot::after{display:none}
+@keyframes pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+
+.hero{display:grid;gap:18px}
+.beat{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+.beat b{color:var(--text);font-weight:500}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,7vw,4.4rem);line-height:.98;letter-spacing:-.035em;text-wrap:balance;max-width:16ch}
+h1 em{font-style:normal;color:var(--amber)}
+.lede{color:var(--muted);font-size:1.05rem;max-width:58ch}
+.warn{display:none;border-left:3px solid var(--yellow);background:rgba(242,209,60,.08);padding:12px 16px;border-radius:0 12px 12px 0;font-size:.95rem}
+.stale .warn{display:block}
+
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-strong)}
+.num{padding:20px 14px 0 0}
+.num+.num{padding-left:18px;border-left:1px solid var(--line)}
+.num b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,6vw,4rem);line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.num:first-child b{color:var(--amber)}
+.num span{display:block;color:var(--muted);font-size:.9rem;margin-top:8px}
+
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,3.6vw,2.2rem);letter-spacing:-.03em;line-height:1.05}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.sec{display:grid;gap:20px}
+.sec>p{color:var(--muted);max-width:60ch;margin-top:-10px}
+
+.box{border:1px solid var(--line-strong);border-radius:18px;background:var(--panel);overflow:hidden}
+.feed li{display:grid;grid-template-columns:118px 1fr auto;gap:12px;align-items:center;padding:13px 18px;border-bottom:1px solid var(--line);border-left:3px solid var(--c,transparent)}
+.feed li:last-child{border-bottom:0}
+.feed time{font-family:var(--mono);font-size:.76rem;color:var(--muted);white-space:nowrap}
+.feed .what{min-width:0}
+.feed .what small{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.pill{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--dim));white-space:nowrap;display:flex;align-items:center;gap:7px}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--dim))}
+.green{--c:var(--green)}.yellow{--c:var(--yellow)}.red{--c:var(--red)}
+.x{color:var(--dim);font-family:var(--mono);font-size:.76rem;margin-left:6px}
+
+.teams{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+.team h3{font-family:var(--display);font-weight:700;font-size:1.15rem;padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.team h3 span{font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--muted)}
+.team li{padding:11px 18px;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.team li:last-child{border-bottom:0}
+.team li small{font-family:var(--mono);font-size:.68rem;color:var(--dim);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.team li small b{color:var(--green);font-weight:500}
+
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:190px;padding:18px 18px 0}
+.bar{display:grid;grid-template-rows:auto 1fr;gap:6px;height:100%;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.bar i{display:block;align-self:end;background:var(--amber);border-radius:6px 6px 0 0;min-height:3px}
+.bar.rest i{background:var(--line-strong)}
+.bar-labels{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:10px 18px 16px;font-family:var(--mono);font-size:.7rem;color:var(--muted);text-align:center;border-top:1px solid var(--line)}
+.bar-labels small{display:block;color:var(--dim);font-size:.62rem}
+
+.saved{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px}
+.save{border:1px solid var(--line-strong);border-radius:18px;padding:22px;background:var(--panel)}
+.save.hot{border-color:var(--amber);background:var(--amber-soft)}
+.save b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.4vw,3.6rem);line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.save.hot b{color:var(--amber)}
+.save span{display:block;color:var(--muted);font-size:.95rem;margin-top:10px}
+.sec>p.fine{font-size:.9rem;max-width:75ch;margin-top:0}
+.how summary{cursor:pointer;padding:14px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.how summary::-webkit-details-marker{display:none}
+.how summary::after{content:"+";font-family:var(--mono);color:var(--amber)}
+.how[open] summary::after{content:"\2212"}
+.how li{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:10px 18px;border-top:1px solid var(--line);font-size:.93rem}
+.how li span:nth-child(2){font-family:var(--mono);font-size:.7rem;color:var(--dim);align-self:center}
+.how li b{font-family:var(--mono);font-weight:500;font-size:.8rem;color:var(--amber);white-space:nowrap;align-self:center}
+.foot{border-top:1px solid var(--line);padding-top:20px;display:grid;gap:10px;color:var(--muted);font-size:.95rem}
+.foot b{color:var(--text)}
+.empty{padding:20px 18px;color:var(--muted)}
+
+@media (max-width:820px){.teams,.saved{grid-template-columns:1fr}}
+@media (max-width:560px){
+  .nums{grid-template-columns:1fr 1fr}
+  .num:nth-child(3){border-left:0;padding-left:0}
+  .num:nth-child(n+3){border-top:1px solid var(--line);margin-top:18px}
+  .feed li{grid-template-columns:1fr auto;gap:4px 12px}
+  .feed time{grid-column:1 / -1}
+  .bars,.bar-labels{gap:5px;padding-left:10px;padding-right:10px}
+}
+@media (prefers-reduced-motion:reduce){.dot::after{animation:none}}
+</style>
+</head>
+<body>
+<div class="page" id="page">
+  <header class="top">
+    <span class="brand">Zero<span>Five</span></span>
+    <small>Live proof</small>
+  </header>
+
+  <section class="hero">
+    <p class="beat"><i class="dot"></i><span>Snapshot from the real system</span><b id="updated">loading</b></p>
+    <h1>This is our back office, <em>working today.</em></h1>
+    <p class="lede">Everything below comes from the records of the AI agents that run ZeroFive, a real bar, restaurant and club. You see times and results. Amounts, names and account details are removed.</p>
+    <p class="warn" id="warn">This snapshot has not refreshed for a while. The agents may still be working, but this page is behind. Ask us for a live walkthrough.</p>
+    <div class="nums">
+      <div class="num"><b id="n-jobs">0</b><span>agent jobs on duty</span></div>
+      <div class="num"><b id="n-today">0</b><span>job runs completed today</span></div>
+      <div class="num"><b id="n-24h">0</b><span>job runs in the last 24 hours</span></div>
+      <div class="num"><b id="n-checks">0</b><span>results logged today</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="saved-sec">
+    <div><p class="kicker">Time saved</p><h2>The same work, if a person did it by hand</h2></div>
+    <div class="saved">
+      <div class="save hot"><b id="s-week">0 h</b><span>of desk work in a normal week, done by the agents</span></div>
+      <div class="save"><b id="s-today">0 h</b><span id="s-today-l">by hand for the daily tasks finished in the last 24 hours</span></div>
+      <div class="save"><b id="s-agent">0 min</b><span>is what the agents needed for those same tasks</span></div>
+    </div>
+    <p class="fine">These hours are our estimate of how long a careful person needs for each task. Each task counts once a day at most. Round-the-clock checks, like the booking system every 10 minutes, are not counted at all, because no person could do them. The agents' time is measured, not estimated.</p>
+    <details class="box how"><summary>See the minutes we assume for each task</summary><ul id="s-tasks"></ul></details>
+  </section>
+
+  <section class="sec">
+    <div><p class="kicker">Activity</p><h2>What the agents just did</h2></div>
+    <p>Green means checked and clean. Yellow means keep watching. Red means the owner was asked to look. Grey is routine work with no status.</p>
+    <ul class="box feed" id="feed"><li class="empty">No activity to show yet.</li></ul>
+  </section>
+
+  <section class="sec">
+    <div><p class="kicker">Job board</p><h2>Who is on duty, and when each job last ran</h2></div>
+    <div class="teams" id="teams"></div>
+  </section>
+
+  <section class="sec">
+    <div><p class="kicker">Last 7 days</p><h2>Results logged per day</h2></div>
+    <p>Monday is the club's rest day. The agents still work: that is when supplier prices are synced.</p>
+    <div class="box"><div class="bars" id="bars"></div><div class="bar-labels" id="bar-labels"></div></div>
+  </section>
+
+  <footer class="foot">
+    <p><b>All times are Manila time.</b> This page is rebuilt from system records every hour. Private details are never included.</p>
+    <p>Want to see more? Reply to the person who sent you this page and ask for the 30-minute walkthrough.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var D={
+ "generated_at": "2026-11-14T17:05:04+00:00",
+ "generated_label": "Nov 15, 01:05",
+ "jobs_on_duty": 41,
+ "runs_today": 20,
+ "runs_24h": 439,
+ "checks_today": 0,
+ "saved": {
+  "day_tasks": 10,
+  "day_human_hours": 3.9,
+  "day_agent_minutes": 48,
+  "week_human_hours": 47,
+  "tasks": [
+   {
+    "label": "Payroll preparation, first half",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Payroll preparation, second half",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Monthly financial close",
+    "minutes": 240,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Supplier price sync",
+    "minutes": 180,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Quarterly tax paperwork",
+    "minutes": 180,
+    "cadence": "On the filing calendar"
+   },
+   {
+    "label": "Weekly internal audit",
+    "minutes": 120,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Weekly stock count check",
+    "minutes": 120,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Monthly tax paperwork",
+    "minutes": 120,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Daily audit: sales, cash and stock",
+    "minutes": 90,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Monthly cash sheet setup",
+    "minutes": 60,
+    "cadence": "Every month"
+   },
+   {
+    "label": "Weekly finance health check",
+    "minutes": 60,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Daily bookkeeping close",
+    "minutes": 45,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Weekly stock count sheet",
+    "minutes": 30,
+    "cadence": "Every week"
+   },
+   {
+    "label": "Bank transfers matched to cash sheet",
+    "minutes": 30,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Owner inbox daily summary",
+    "minutes": 30,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Daily work log",
+    "minutes": 20,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Owner pulse check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Goods-received data check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Tax deadline watch",
+    "minutes": 15,
+    "cadence": "Every 3 days"
+   },
+   {
+    "label": "Daily tax filing check",
+    "minutes": 15,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Delivery-app report download",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Kitchen order linking",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Cash totals sync",
+    "minutes": 10,
+    "cadence": "Every day"
+   },
+   {
+    "label": "Electricity bill check",
+    "minutes": 5,
+    "cadence": "Every day"
+   }
+  ]
+ },
+ "teams": [
+  {
+   "name": "Operations",
+   "jobs": [
+    {
+     "label": "Booking system check",
+     "cadence": "Every 10 min",
+     "last": "Today 00:58"
+    },
+    {
+     "label": "Job health monitor",
+     "cadence": "Every hour",
+     "last": "Today 00:41"
+    },
+    {
+     "label": "Bank login health check",
+     "cadence": "Every 30 min",
+     "last": "Today 00:36"
+    },
+    {
+     "label": "Watchdog: agents check agents",
+     "cadence": "Every hour",
+     "last": "Today 00:28"
+    },
+    {
+     "label": "Company notes sync",
+     "cadence": "Every 30 min",
+     "last": "Today 00:10"
+    },
+    {
+     "label": "Self-repair loop",
+     "cadence": "Every 2 hours",
+     "last": "Today 00:00"
+    },
+    {
+     "label": "Kitchen order linking",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:33"
+    },
+    {
+     "label": "Bank login refresh",
+     "cadence": "Every 12 hours",
+     "last": "Yesterday 20:02"
+    },
+    {
+     "label": "Goods-received data check",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:01"
+    },
+    {
+     "label": "Cash totals sync",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 20:00"
+    },
+    {
+     "label": "Owner pulse check",
+     "cadence": "Every 4 hours",
+     "last": "Yesterday 20:00"
+    },
+    {
+     "label": "Daily audit: sales, cash and stock",
+     "cadence": "Every day",
+     "last": "Yesterday 17:29"
+    },
+    {
+     "label": "Delivery-app report download",
+     "cadence": "Every day",
+     "last": "Yesterday 16:00"
+    },
+    {
+     "label": "Electricity bill check",
+     "cadence": "Every day",
+     "last": "Yesterday 15:00"
+    },
+    {
+     "label": "Staff exit paperwork watch",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 12:52"
+    },
+    {
+     "label": "Weekly stock count sheet",
+     "cadence": "Every week",
+     "last": "Yesterday 06:00"
+    },
+    {
+     "label": "Daily work log",
+     "cadence": "Every day",
+     "last": "Yesterday 05:00"
+    },
+    {
+     "label": "Weekly stock count check",
+     "cadence": "Every week",
+     "last": "Nov 12, 10:01"
+    },
+    {
+     "label": "Payment approval watch",
+     "cadence": "Every 2 hours",
+     "last": ""
+    },
+    {
+     "label": "Weekly internal audit",
+     "cadence": "Every week",
+     "last": ""
+    },
+    {
+     "label": "Running-cost monitor",
+     "cadence": "Every 12 hours",
+     "last": ""
+    },
+    {
+     "label": "Monthly cash sheet setup",
+     "cadence": "Every month",
+     "last": ""
+    },
+    {
+     "label": "System update review",
+     "cadence": "Every 6 hours",
+     "last": ""
+    },
+    {
+     "label": "Supplier price sync",
+     "cadence": "Every week",
+     "last": ""
+    }
+   ]
+  },
+  {
+   "name": "Finance",
+   "jobs": [
+    {
+     "label": "Payroll preparation, second half",
+     "cadence": "Every month",
+     "last": "Today 00:45"
+    },
+    {
+     "label": "Payroll preparation, first half",
+     "cadence": "Every month",
+     "last": "Yesterday 22:54"
+    },
+    {
+     "label": "Bank transfers matched to cash sheet",
+     "cadence": "Every day",
+     "last": "Yesterday 18:04"
+    },
+    {
+     "label": "Payroll double-check",
+     "cadence": "Every 12 hours",
+     "last": "Yesterday 14:09"
+    },
+    {
+     "label": "Daily tax filing check",
+     "cadence": "Every day",
+     "last": "Nov 13, 20:28"
+    },
+    {
+     "label": "Daily bookkeeping close",
+     "cadence": "Every day",
+     "last": "Nov 13, 20:22"
+    },
+    {
+     "label": "Tax deadline watch",
+     "cadence": "Every 3 days",
+     "last": "Nov 12, 12:10"
+    },
+    {
+     "label": "Weekly finance health check",
+     "cadence": "Every week",
+     "last": "Nov 9, 09:02"
+    },
+    {
+     "label": "Monthly financial close",
+     "cadence": "Every month",
+     "last": "Nov 1, 14:14"
+    },
+    {
+     "label": "Monthly tax paperwork",
+     "cadence": "Every month",
+     "last": "Oct 3, 14:05"
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": "Aug 8, 14:08"
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    },
+    {
+     "label": "Quarterly tax paperwork",
+     "cadence": "On the filing calendar",
+     "last": ""
+    }
+   ]
+  },
+  {
+   "name": "Executive Assistant",
+   "jobs": [
+    {
+     "label": "Owner inbox urgent-mail watch",
+     "cadence": "Every 3 hours",
+     "last": "Yesterday 17:14"
+    },
+    {
+     "label": "Payment approval watch",
+     "cadence": "Every 6 hours",
+     "last": "Yesterday 14:06"
+    },
+    {
+     "label": "Owner inbox daily summary",
+     "cadence": "Every day",
+     "last": "Yesterday 09:02"
+    }
+   ]
+  }
+ ],
+ "feed": [
+  {
+   "when": "Yesterday 18:03",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 17:28",
+   "team": "Operations",
+   "label": "Daily audit finished: items to watch",
+   "colour": "yellow",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 08:00",
+   "team": "Operations",
+   "label": "Cash totals recorded",
+   "colour": "green",
+   "count": 1
+  },
+  {
+   "when": "Yesterday 07:10",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 20:27",
+   "team": "Finance",
+   "label": "Tax deadlines checked",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 20:25",
+   "team": "Finance",
+   "label": "Bank transfers checked",
+   "colour": "neutral",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 20:14",
+   "team": "Operations",
+   "label": "Daily audit finished: items to watch",
+   "colour": "yellow",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 20:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 12:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 10:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 2
+  },
+  {
+   "when": "Nov 13, 08:00",
+   "team": "Operations",
+   "label": "Cash totals recorded",
+   "colour": "green",
+   "count": 1
+  },
+  {
+   "when": "Nov 13, 06:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 12, 22:00",
+   "team": "Operations",
+   "label": "Self-repair run",
+   "colour": "neutral",
+   "count": 1
+  },
+  {
+   "when": "Nov 12, 19:01",
+   "team": "Finance",
+   "label": "Tax deadlines checked",
+   "colour": "neutral",
+   "count": 1
+  }
+ ],
+ "days": [
+  {
+   "day": "Mon",
+   "date": "Nov 9",
+   "count": 98,
+   "rest": true
+  },
+  {
+   "day": "Tue",
+   "date": "Nov 10",
+   "count": 19,
+   "rest": false
+  },
+  {
+   "day": "Wed",
+   "date": "Nov 11",
+   "count": 14,
+   "rest": false
+  },
+  {
+   "day": "Thu",
+   "date": "Nov 12",
+   "count": 12,
+   "rest": false
+  },
+  {
+   "day": "Fri",
+   "date": "Nov 13",
+   "count": 23,
+   "rest": false
+  },
+  {
+   "day": "Sat",
+   "date": "Nov 14",
+   "count": 5,
+   "rest": false
+  },
+  {
+   "day": "Sun",
+   "date": "Nov 15",
+   "count": 0,
+   "rest": false
+  }
+ ]
+};
+  var $=function(id){return document.getElementById(id);};
+  function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+  if(!D){$('updated').textContent='snapshot unavailable';$('page').classList.add('stale');return;}
+
+  var ageMin=Math.round((Date.now()-new Date(D.generated_at).getTime())/60000);
+  var ago=ageMin<1?'just now':ageMin<60?ageMin+' min ago':Math.round(ageMin/60)+' h ago';
+  $('updated').textContent='Updated '+D.generated_label+' Manila ('+ago+')';
+  if(ageMin>130) $('page').classList.add('stale');
+
+  var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
+  $('n-jobs').textContent=fmt(D.jobs_on_duty);
+  $('n-today').textContent=fmt(D.runs_today);
+  $('n-24h').textContent=fmt(D.runs_24h);
+  $('n-checks').textContent=fmt(D.checks_today);
+
+  var S=D.saved;
+  if(S&&S.week_human_hours){
+    $('s-week').textContent='~'+S.week_human_hours+' h';
+    $('s-today').textContent='~'+S.day_human_hours+' h';
+    $('s-today-l').textContent='by hand for the '+S.day_tasks+' daily tasks finished in the last 24 hours';
+    $('s-agent').textContent=S.day_agent_minutes+' min';
+    S.tasks.forEach(function(t){
+      var li=el('li');li.appendChild(el('span',null,t.label));li.appendChild(el('span',null,t.cadence));
+      var m=t.minutes;li.appendChild(el('b',null,m>=60?(m%60?(m/60).toFixed(1):m/60)+' h':m+' min'));
+      $('s-tasks').appendChild(li);
+    });
+  } else { $('saved-sec').hidden=true; }
+
+  var words={green:'Clean',yellow:'Watch',red:'Owner asked',neutral:'Done'};
+  if(D.feed.length){
+    var feed=$('feed');feed.textContent='';
+    D.feed.forEach(function(f){
+      var li=el('li',f.colour==='neutral'?'':f.colour);
+      li.appendChild(el('time',null,f.when));
+      var w=el('div','what');
+      w.appendChild(el('small',null,f.team));
+      var line=el('span',null,f.label);
+      if(f.count>1) line.appendChild(el('span','x','×'+f.count));
+      w.appendChild(line);li.appendChild(w);
+      li.appendChild(el('span','pill',words[f.colour]||'Done'));
+      feed.appendChild(li);
+    });
+  }
+
+  var teams=$('teams');
+  D.teams.forEach(function(t){
+    if(!t.jobs.length) return;
+    var box=el('div','box team');
+    var h=el('h3',null,t.name);h.appendChild(el('span',null,t.jobs.length+' jobs'));box.appendChild(h);
+    var ul=el('ul');
+    t.jobs.forEach(function(j){
+      var li=el('li');li.appendChild(el('span',null,j.label));
+      var s=el('small');s.appendChild(el('span',null,j.cadence));
+      if(j.last) s.appendChild(el('b',null,'Last ran '+j.last));
+      li.appendChild(s);ul.appendChild(li);
+    });
+    box.appendChild(ul);teams.appendChild(box);
+  });
+
+  var max=Math.max.apply(null,D.days.map(function(d){return d.count;}).concat([1]));
+  D.days.forEach(function(d){
+    var b=el('div','bar'+(d.rest?' rest':''));
+    b.appendChild(el('span',null,d.count));
+    var i=el('i');i.style.height=Math.max(2,Math.round(d.count/max*100))+'%';b.appendChild(i);
+    $('bars').appendChild(b);
+    var l=el('div',null,d.day);l.appendChild(el('small',null,d.rest?'rest day':d.date));
+    $('bar-labels').appendChild(l);
+  });
+})();
+</script>
+</body>
+</html>
